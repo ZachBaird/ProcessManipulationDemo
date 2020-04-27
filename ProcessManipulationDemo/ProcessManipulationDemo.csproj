@@ -5,4 +5,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="FlaUI.Core" Version="3.0.0" />
+    <PackageReference Include="FlaUI.UIA3" Version="3.0.0" />
+  </ItemGroup>
+
 </Project>
