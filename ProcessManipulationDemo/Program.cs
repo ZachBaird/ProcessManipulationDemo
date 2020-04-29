@@ -1,8 +1,10 @@
 ﻿using FlaUI.UIA3;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text;
 
 namespace ProcessManipulationDemo
 {
@@ -10,7 +12,27 @@ namespace ProcessManipulationDemo
     {
         static void Main()
         {
-            PerformWebInstallsForVBoxAndXubuntu();
+            //PerformWebInstallsForVBoxAndXubuntu();
+            GetLocalUsers();
+            StartBatchScript();
+
+            Console.WriteLine("Bat script started...");
+            Console.ReadKey();
+        }
+
+        private static void GetLocalUsers()
+        {
+            var directories = Directory.GetDirectories(@"C:\Users");
+
+            Console.WriteLine("Grabbing local users..");
+            foreach (var directory in directories)
+            {
+                var dirPaths = directory.Split('\\');
+                var dirName = dirPaths[dirPaths.Length - 1];
+                Console.WriteLine($"Username : {dirName}");
+            }
+
+            Console.WriteLine("\nFinished..");
         }
 
         private static void PrintRunningProcesses()
@@ -22,6 +44,11 @@ namespace ProcessManipulationDemo
                 Console.WriteLine(process.ProcessName);
 
             Console.WriteLine();
+        }
+
+        private static void StartBatchScript()
+        {
+            Process.Start(@"C:/Dev/batscripts/test.bat");
         }
 
         private static void KillMicrosoftEdge()
